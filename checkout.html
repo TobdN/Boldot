@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Boldot Fashion World</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    form label { display: block; margin-top: 10px; font-weight: bold; }
+    form input, form textarea { width: 100%; padding: 8px; margin-top: 4px; border: 1px solid #ccc; border-radius: 4px; }
+    #order-summary img { border-radius: 5px; }
+    #order-summary div { margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <div class="logo">Boldot Fashion World</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="cart.html">Cart</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="container" style="margin-top: 40px;">
+  <h1>Checkout</h1>
+  <p>Please fill in your details and confirm your order.</p>
+
+  <form id="checkout-form">
+    <label>Full Name</label>
+    <input type="text" id="name" required>
+
+    <label>Delivery Address</label>
+    <textarea id="address" required></textarea>
+
+    <label>WhatsApp Number</label>
+    <input type="text" id="whatsapp" required>
+
+    <h2>Order Summary</h2>
+    <div id="order-summary" style="border:1px solid #ddd; padding:10px; border-radius:8px; background:#fafafa;"></div>
+
+    <h3 id="grand-total" style="margin-top:10px; color:#333;"></h3>
+
+    <button type="submit" class="btn" style="margin-top: 15px;">Place Order</button>
+  </form>
+</section>
+
+<footer>
+  <div class="container">&copy; 2025 Boldot Fashion World. All rights reserved.</div>
+</footer>
+
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  // Initialize EmailJS with your Public Key
+  (function(){
+    emailjs.init("c3L4TimeaiR6qXQ9o");
+  })();
+
+  // Load cart data
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const summary = document.getElementById('order-summary');
+  const grandTotalEl = document.getElementById('grand-total');
+
+  let orderDetailsHTML = '';
+  let total = 0;
+
+  cart.forEach(item => {
+    const itemTotal = item.price * item.quantity;
+    total += itemTotal;
+    orderDetailsHTML += `
+      <div>
+        <img src="${item.image}" width="50" height="50"> 
+        <strong>${item.name}</strong> - ${item.quantity} x $${item.price.toFixed(2)} 
+        <span style="float:right;">$${itemTotal.toFixed(2)}</span>
+      </div>
+    `;
+  });
+
+  summary.innerHTML = orderDetailsHTML || "<p>No items in cart.</p>";
+  grandTotalEl.textContent = `Grand Total: $${total.toFixed(2)}`;
+
+  // Handle form submission
+  document.getElementById('checkout-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    if(cart.length === 0) {
+      alert("Your cart is empty!");
+      return;
+    }
+
+    const templateParams = {
+      name: document.getElementById('name').value,
+      address: document.getElementById('address').value,
+      whatsapp: document.getElementById('whatsapp').value,
+      order: orderDetailsHTML + `<br><strong>Total: $${total.toFixed(2)}</strong>`
+    };
+
+    emailjs.send("service_9t5yv68", "template_nfxokm7", templateParams)
+      .then(function(response) {
+         alert("Order sent successfully! We will contact you on WhatsApp.");
+         localStorage.removeItem('cart');
+         window.location.href = "thankyou.html";
+      }, function(error) {
+         console.error("Error:", error);
+         alert("Error sending order. Please try again.");
+      });
+  });
+</script>
+
+</body>
+</html>

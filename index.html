@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Boldot Fashion World — Home</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAV -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">Boldot Fashion World</div>
+
+        <ul class="nav-links" aria-label="Primary navigation">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO / SLIDER -->
+ <section class="hero">
+  <!-- Slider (just images here) -->
+  <div class="slider">
+    <div class="slide active">
+      <img src="images/image1.jpg" alt="">
+    </div>
+    <div class="slide">
+      <img src="images/image2.jpg" alt="">
+    </div>
+    <div class="slide">
+      <img src="images/image3.jpg" alt="">
+    </div>
+  </div>
+
+  <!-- Static overlay text -->
+  <div class="hero-content container">
+    <h1>Welcome to Boldot Fashion World</h1>
+    <p>Your one-stop fashion hub for trendy bags, classy shoes, and stylish clothes.</p>
+    <div class="homepage-buttons">
+      <a class="btn" href="products.html">Shop Now</a>
+      <a class="btn" href="cart.html">Go to Cart</a>
+    </div>
+  </div>
+</section>
+
+
+  <!-- ABOUT -->
+  <section id="about" class="about">
+    <div class="container about-inner">
+      <div class="about-text">
+        <h2>About Us</h2>
+        <p>At Boldot Fashion World, we blend style with affordability. We are committed to providing premium-quality fashion products that make you stand out — bags, shoes, clothes and jewelry all in one place. Bold, classy, and always in style.</p>
+      </div>
+      <div class="about-media">
+        <img src="images/image1.jpg" alt="About Boldot">
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products" class="products">
+    <div class="container">
+      <h2>Our Products</h2>
+      <p class="mt-8">Explore our main categories</p>
+
+      <div class="product-grid mt-8">
+        <div class="card">
+          <img src="images/bag1.jpg" alt="Bags">
+          <h3>Bags</h3>
+          <p>Stylish and durable bags for every occasion.</p>
+        </div>
+        <div class="card">
+          <img src="images/cloth1.jpg" alt="Clothes">
+          <h3>Clothes</h3>
+          <p>Trendy outfits that fit every style and season.</p>
+        </div>
+        <div class="card">
+          <img src="images/shoe1.jpg" alt="Shoes">
+          <h3>Shoes</h3>
+          <p>Comfortable and classy footwear to step out in style.</p>
+        </div>
+        <div class="card">
+          <img src="images/jewelry1.jpg" alt="Jewelry">
+          <h3>Jewelry</h3>
+          <p>Elegant pieces to add sparkle to any outfit.</p>
+        </div>
+      </div>
+
+      <div class="center mt-8">
+        <a class="btn" href="products.html">View All Products</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="container contact-inner">
+      <div class="contact-form">
+        <h2>Contact Us</h2>
+        <form id="contactForm">
+          <input type="text" name="name" placeholder="Full name" required>
+          <input type="email" name="email" placeholder="Your email" required>
+          <textarea name="message" placeholder="Your message" required></textarea>
+          <button class="btn" type="submit">Send Message</button>
+        </form>
+      </div>
+
+      <div class="contact-info">
+        <h3>Write to us</h3>
+        <p>Email: info@boldotfashion.com</p>
+        <p>Phone: +234 800 123 4567</p>
+        <p>Address: 123 Fashion Street, Lagos</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">&copy; 2025 Boldot Fashion World. All rights reserved.</div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    // Slider: fade slides, change every 3 seconds
+    (function(){
+      let slideIndex = 0;
+      const slides = document.querySelectorAll('.slide');
+
+      function showSlides(){
+        slides.forEach((s,i) => {
+          s.classList.toggle('active', i === slideIndex);
+        });
+        slideIndex = (slideIndex + 1) % slides.length;
+      }
+
+      // initial small delay so first slide is visible then start cycling
+      setTimeout(() => {
+        setInterval(showSlides, 3000);
+      }, 1000);
+    })();
+
+    // Demo contact form handler
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      alert('Thanks! Your message has been received (demo).');
+      this.reset();
+    });
+  </script>
+
+</body>
+</html>
