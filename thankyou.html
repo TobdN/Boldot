@@ -35,6 +35,9 @@
   <div class="container">
     <nav>
       <div class="logo">Boldot Fashion World</div>
+	  <div class="menu-toggle" id="mobile-menu">
+		☰
+		</div>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="products.html">Products</a></li>
@@ -52,6 +55,14 @@
 <footer>
   <div class="container">&copy; 2025 Boldot Fashion World. All rights reserved.</div>
 </footer>
+<script>
+  const mobileMenu = document.getElementById('mobile-menu');
+  const navLinks = document.querySelector('.nav-links');
+
+  mobileMenu.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+</script>
 
 </body>
 </html>

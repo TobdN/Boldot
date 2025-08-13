@@ -317,3 +317,39 @@ footer{background:var(--dark);color:#fff;padding:18px;text-align:center;font-siz
     margin-top: 20px;
     text-align: center;
 }
+/* Default desktop menu */
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+    color: #333;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: white;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    z-index: 999;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }
+}

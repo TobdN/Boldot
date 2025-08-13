@@ -13,6 +13,9 @@
     <div class="container">
       <nav>
         <div class="logo">Boldot Fashion World</div>
+		<div class="menu-toggle" id="mobile-menu">
+		☰
+		</div>
         <ul class="nav-links" aria-label="Primary navigation">
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
@@ -64,5 +67,14 @@
   </footer>
 
   <script src="cart.js"></script>
+  <script>
+  const mobileMenu = document.getElementById('mobile-menu');
+  const navLinks = document.querySelector('.nav-links');
+
+  mobileMenu.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+</script>
+
 </body>
 </html>

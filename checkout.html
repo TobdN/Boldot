@@ -18,6 +18,9 @@
   <div class="container">
     <nav>
       <div class="logo">Boldot Fashion World</div>
+	  <div class="menu-toggle" id="mobile-menu">
+		☰
+		</div>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="products.html">Products</a></li>
@@ -114,6 +117,14 @@
          console.error("EmailJS Error:", error);
          alert("Error: " + JSON.stringify(error));
       });
+  });
+</script>
+<script>
+  const mobileMenu = document.getElementById('mobile-menu');
+  const navLinks = document.querySelector('.nav-links');
+
+  mobileMenu.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
   });
 </script>
 
