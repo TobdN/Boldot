@@ -57,9 +57,9 @@
 <!-- EmailJS SDK -->
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
-  // Initialize EmailJS with your Public Key
+  // Initialize EmailJS with your new Public Key
   (function(){
-    emailjs.init("c3L4TimeaiR6qXQ9o");
+    emailjs.init("GDEHcVdp08NeqfzgS");
   })();
 
   // Load cart data
@@ -103,7 +103,7 @@
 
     console.log("Sending with params:", templateParams);
 
-    emailjs.send("service_8wekqiq", "template_nfxokm7", templateParams)
+    emailjs.send("service_jgp0i5y", "template_su74798", templateParams)
       .then(function(response) {
          console.log("EmailJS Success:", response);
          alert("Order sent successfully! We will contact you on WhatsApp.");
