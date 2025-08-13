@@ -101,14 +101,18 @@
       order: orderDetailsHTML + `<br><strong>Total: $${total.toFixed(2)}</strong>`
     };
 
+    console.log("Sending with params:", templateParams);
+
     emailjs.send("service_9t5yv68", "template_nfxokm7", templateParams)
       .then(function(response) {
+         console.log("EmailJS Success:", response);
          alert("Order sent successfully! We will contact you on WhatsApp.");
          localStorage.removeItem('cart');
          window.location.href = "thankyou.html";
-      }, function(error) {
-         console.error("Error:", error);
-         alert("Error sending order. Please try again.");
+      })
+      .catch(function(error) {
+         console.error("EmailJS Error:", error);
+         alert("Error: " + JSON.stringify(error)); // Shows exact error in popup
       });
   });
 </script>
