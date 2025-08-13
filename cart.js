@@ -1,4 +1,3 @@
-// cart.js
 document.addEventListener("DOMContentLoaded", function () {
     const cartButtons = document.querySelectorAll(".add-to-cart");
 
@@ -28,6 +27,35 @@ document.addEventListener("DOMContentLoaded", function () {
     // Cart page rendering
     if (document.getElementById("cart-items")) {
         loadCart();
+    }
+
+    // Clear Cart Button
+    const clearBtn = document.getElementById("clear-cart");
+    if (clearBtn) {
+        clearBtn.addEventListener("click", () => {
+            if (confirm("Are you sure you want to clear your cart?")) {
+                localStorage.removeItem("cart");
+                loadCart();
+                alert("Your cart has been cleared.");
+            }
+        });
+    }
+
+    // Checkout Button
+    const checkoutBtn = document.getElementById("checkout");
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener("click", () => {
+            window.location.href = "checkout.html";
+        });
+    }
+
+    // 🔹 Mobile Menu Toggle (works for all pages)
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+    if (mobileMenu && navLinks) {
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
     }
 });
 
@@ -84,21 +112,3 @@ function removeItem(index) {
     localStorage.setItem("cart", JSON.stringify(cart));
     loadCart();
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-    const clearBtn = document.getElementById("clear-cart");
-    const checkoutBtn = document.getElementById("checkout");
-
-    if (clearBtn) {
-        clearBtn.addEventListener("click", () => {
-            localStorage.removeItem("cart");
-            loadCart();
-        });
-    }
-
-    if (checkoutBtn) {
-        checkoutBtn.addEventListener("click", () => {
-            alert("Proceeding to checkout...");
-        });
-    }
-});
